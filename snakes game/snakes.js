@@ -1,10 +1,7 @@
 // Snakes Game
 
-//Game Loop - Init, Draw, Update,
-
 function init(){
     
-   // console.log("Init");
     canvas = document.getElementById('mycanvas');
     pen = canvas.getContext('2d');
     W = canvas.width;
@@ -12,7 +9,7 @@ function init(){
     game_over = false;
     
     food = getRandomFood();
-    score = 5;
+    score = 00;
     
     
     snake = {
@@ -38,26 +35,20 @@ function init(){
             }
             
         },
+
+        // Update the snake
         updateSnake:function(){
             var headX = this.cells[0].x;
             var headY = this.cells[0].y;
             
-            //Assuming Snake is moving right
-            //Insertion at head;
-           // nextHeadX = headX+1;
-            
-            //this.cells.unshift({x:nextHeadX,y:headY});
-            
             if(headX==food.x && headY==food.y){
                 food = getRandomFood();
-                score++;
+                score+=10;
             }
             else{
                 //Pop last cell if food not eaten
                 this.cells.pop();
             }
-            
-            
             
             if(this.direction =="right"){
                 nextX = headX + 1;
@@ -71,10 +62,11 @@ function init(){
                 nextX = headX;
                 nextY = headY + 1;
             }
-            else{
+            else if(this.direction=="up"){
                 nextX = headX;
                 nextY = headY - 1;
             }
+
             //Insert the new cell at head/front
             this.cells.unshift({x:nextX,y:nextY});
             
@@ -84,7 +76,7 @@ function init(){
             var last_y = Math.round(H/10);
             
             if(this.cells[0].y<0 || this.cells[0].x <0|| this.cells[0].x>last_x || this.cells[0].y>last_y){
-                    alert("GameOver");
+                    alert("GameOver!! Your score is: " + score);
                     game_over = true;
                 
             }
@@ -95,24 +87,23 @@ function init(){
     };
     snake.createSnake();
     
-    //Add Event listeners to our game
-    //Listen for keyboard events.
+    //Adding Event listeners
     
     function KeyPressed(e){
         
         console.log("You pressed a key");
         console.log(e);
         
-        if(e.key=="ArrowRight"){
+        if(e.key=="ArrowRight" || e.key=="D" || e.key=="d"){
             snake.direction = "right";
         }
-        else if(e.key=="ArrowLeft"){
+        else if(e.key=="ArrowLeft" || e.key=="A" || e.key=="a"){
             snake.direction = "left";
         }
-        else if(e.key=="ArrowDown"){
+        else if(e.key=="ArrowDown" || e.key=="S" || e.key=="s"){
             snake.direction = "down";
         }
-        else{
+        else if(e.key=="ArrowUp" || e.key=="W" || e.key=="w"){
             snake.direction = "up";
         }
         
@@ -126,7 +117,6 @@ function init(){
 function draw(){
     pen.clearRect(0,0,W,H);
     snake.drawSnake();
-    console.log("In draw");
     
     //Lets us draw the food
     
@@ -175,7 +165,10 @@ function getRandomFood(){
 }
 
 init();
-//Call Game Looper after t time
+
+
+//Speed of the game:
+
 var f = setInterval(gameLoop,100);
 
 
