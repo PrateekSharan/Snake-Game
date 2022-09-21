@@ -1,29 +1,38 @@
-<html>
-    <head>
-        <title>Fun Snake Game</title>
-        <style>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fun Snake Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
             
-            div{
-                width:100px;
-                height:100px;
-                background-color: aqua;
-                margin:10px;
-            }
-            #mycanvas{
-                width:800px;
-                height:400px;
-                border:5px solid orange;
-                background-color: black ;
-            }
-            
-        </style>    
-    </head>
-    
-    <body>
-        <!--<div id="mydiv"></div>-->
-        <!--<script src="practice.js"></script>-->
-        <canvas id ="mycanvas"></canvas>
-        <script src="snakes.js"></script>
+   /*   div{ 
+            width:100px;
+            height:100px;
+            background-color: aqua;
+            margin:10px;
+        } */
+        #mycanvas{
+            width:800px;
+            height:400px;
+            border:5px solid orange;
+            background-color: black ;
+        }
         
-    </body>
+    </style>   
+  </head>
+  <body>
+    <div> <h1><p class="text-center" >The Ultimate Snakes Game</p></h1></div>
+    <div style = "text-align:center;">
+        <canvas id ="mycanvas"></canvas>
+      </div>
+    <div style = "text-align:center;">
+        <button type="button" class="btn btn-outline-primary" id ="slow_button" onclick="speedslow()"> 0.5x </button>
+        <button type="button" class="btn btn-outline-primary" id="medium_button" onclick ="speedmedium()"> 1x </button>
+        <button type="button" class="btn btn-outline-primary" id="fast_button" onclick="speedfast()"> 2x </button>
+    </div>
+    <script src="snakes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  </body>
 </html>
